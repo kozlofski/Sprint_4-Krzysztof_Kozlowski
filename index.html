@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista zadań</title>
-    <script src="./todo-list.js"></script>
   </head>
   <body>
-    <div class="adding-new-task">
-      <input type="text" name="task-name" id="task-name" />
-      <button class="add-task-button">Dodaj zadanie</button>
-    </div>
+    <form name="adding-new-task" novalidate>
+      <input type="text" name="new-task-name" id="new-task-name" />
+      <input type="submit" value="Dodaj zadanie" />
+    </form>
     <div class="tasks-container">
       <ul class="task-list"></ul>
     </div>
+    <script src="./todo-list.js"></script>
   </body>
 </html>
