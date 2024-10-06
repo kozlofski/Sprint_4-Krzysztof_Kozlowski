@@ -19,6 +19,12 @@ const renderTasksList = function() {
     for(task of tasks) {
         const newTaskElement = document.createElement('li');
         newTaskElement.innerText = task;
-        tasksList.appendChild(newTaskElement);
+        const editButton = document.createElement('button');
+        editButton.innerText = "Edytuj";
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = "Usuń";
+        newTaskElement.appendChild(editButton);
+        newTaskElement.appendChild(deleteButton);
+        tasksList.appendChild(newTaskElement);        
     }
 }
