@@ -20,16 +20,24 @@ const deleteTask = function(event) {
     renderTasksList(false);
 }
 
+const confirmChanges = function() {
+
+}
+
 const editTask = function(event) {
     const itemToChange = event.currentTarget.parentNode;
     const span = itemToChange.querySelector('span');
+    const taskToBeEdited = span.innerText;
     span.innerText = ''
     const editButton = itemToChange.querySelector('.edit-button');
-    editButton.remove();
+    editButton.remove();    
     const deleteButton = itemToChange.querySelector('.delete-button');
+
     const confirmChangesButton = document.createElement('input');
     confirmChangesButton.setAttribute('type', 'submit');
     confirmChangesButton.setAttribute('value', 'Zatwierdź zmiany')
+    confirmChangesButton.addEventListener('click', confirmChanges);
+    
     const editingInput = document.createElement('input');
     editingInput.setAttribute('type', 'text');
 
