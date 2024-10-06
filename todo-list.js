@@ -1,14 +1,13 @@
-const addTaskButton = document.querySelector(".add-task-button");
 const taskForm = document.forms['adding-new-task'];
-
 const newTaskInput = taskForm.elements['new-task-name'];
 
-console.dir(newTaskInput)
+tasks = [];
 
 const addTask = function(event) {
     event.preventDefault();
-    const taskName = newTaskInput.value;
-    console.log(taskName)
+    const newTaskName = newTaskInput.value;
+    tasks.push(newTaskName);
+    console.log(tasks)
 }
 
 taskForm.addEventListener('submit', addTask);
