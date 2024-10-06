@@ -12,17 +12,31 @@ const addTask = function(event) {
     renderTasksList();
 }
 
+const deleteTask = function(event) {
+    const taskToBeDeleted = event.currentTarget.parentNode.firstElementChild.innerText;
+    const indexOfDelTask = tasks.indexOf(taskToBeDeleted);
+    console.log(indexOfDelTask);
+    tasks.splice(indexOfDelTask, 1);
+    renderTasksList();
+}
+
 taskForm.addEventListener('submit', addTask);
 
 const renderTasksList = function() {
     tasksList.innerHTML = '';
     for(task of tasks) {
         const newTaskElement = document.createElement('li');
-        newTaskElement.innerText = task;
+        const taskName = document.createElement('span');
+        taskName.innerHTML = task;
+
         const editButton = document.createElement('button');
         editButton.innerText = "Edytuj";
+
         const deleteButton = document.createElement('button');
-        deleteButton.innerText = "Usuń";
+        deleteButton.innerText = "Usuń";        
+        deleteButton.addEventListener('click', deleteTask);
+
+        newTaskElement.appendChild(taskName)
         newTaskElement.appendChild(editButton);
         newTaskElement.appendChild(deleteButton);
         tasksList.appendChild(newTaskElement);        
