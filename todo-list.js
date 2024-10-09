@@ -7,6 +7,9 @@ tasks = [];
 const addTask = function(event) {
     event.preventDefault();
     const newTaskName = newTaskInput.value;
+    if(!newTaskName) {
+        window.alert('Nazwa zadania nie może być pusta.');
+    }
     tasks.push(newTaskName);
     renderTasksList();
     taskForm.reset();
@@ -22,7 +25,6 @@ const deleteTask = function(event) {
 }
 
 const editTask = function(event) {
-    // event.preventDefault();
     const listItemToChange = event.currentTarget.parentNode;
     renderEditTaskView(listItemToChange);
 }
