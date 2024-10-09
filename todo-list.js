@@ -92,6 +92,7 @@ const renderEditTaskView = function(listItemToChange) {
     editingForm.appendChild(editingInput);
     editingInput.setAttribute('type', 'text');
     editingInput.setAttribute('name', 'changed-task-name');
+    editingInput.focus();
 
     const confirmChangesButton = document.createElement('input');
     confirmChangesButton.setAttribute('type', 'submit');
