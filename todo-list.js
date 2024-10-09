@@ -83,6 +83,7 @@ const renderEditTaskView = function(listItemToChange) {
     const editButton = listItemToChange.querySelector('.edit-button');
     const deleteButton = listItemToChange.querySelector('.delete-button');
 
+    const oldTaskName = span.innerHTML;
     span.innerHTML = '';
     editButton.remove();    
 
@@ -95,6 +96,7 @@ const renderEditTaskView = function(listItemToChange) {
     editingForm.appendChild(editingInput);
     editingInput.setAttribute('type', 'text');
     editingInput.setAttribute('name', 'changed-task-name');
+    editingInput.value = oldTaskName;
     editingInput.focus();
 
     const confirmChangesButton = document.createElement('input');
