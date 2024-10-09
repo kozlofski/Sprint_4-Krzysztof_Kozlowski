@@ -32,14 +32,20 @@ const editTask = function(event) {
 
 const saveEditedTask = function(event) {
     event.preventDefault();
-    const listItemEdited = event.currentTarget.parentNode.parentNode;
-    const span = listItemEdited.querySelector('span');
-    const oldTaskName = span.dataset.taskName;
 
     const editingInput = document.forms['editing-task'].elements['changed-task-name'];
     const newTaskName = editingInput.value;
 
-    updateTasksArray(oldTaskName, newTaskName);
+    if(!newTaskName) {
+        window.alert("Nazwa zadania nie może być pusta.");
+    } else {
+        const listItemEdited = event.currentTarget.parentNode.parentNode;
+        const span = listItemEdited.querySelector('span');
+        const oldTaskName = span.dataset.taskName;    
+    
+        updateTasksArray(oldTaskName, newTaskName);
+    }
+
 }
 
 const updateTasksArray = function(oldTaskName, newTaskName) {
