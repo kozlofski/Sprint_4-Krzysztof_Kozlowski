@@ -9,10 +9,11 @@ const addTask = function(event) {
     const newTaskName = newTaskInput.value;
     if(!newTaskName) {
         window.alert('Nazwa zadania nie może być pusta.');
+    } else {
+        tasks.push(newTaskName);
+        renderTasksList();
+        taskForm.reset();
     }
-    tasks.push(newTaskName);
-    renderTasksList();
-    taskForm.reset();
 }
 
 const deleteTask = function(event) {
