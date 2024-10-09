@@ -16,6 +16,8 @@ const addTask = function(event) {
     }
 }
 
+taskForm.addEventListener('submit', addTask);
+
 const deleteTask = function(event) {
     const taskToBeDeleted = event.currentTarget.parentNode;
     const span = taskToBeDeleted.querySelector('span');
@@ -41,45 +43,39 @@ const saveEditedTask = function(event) {
     } else {
         const listItemEdited = event.currentTarget.parentNode.parentNode;
         const span = listItemEdited.querySelector('span');
-        const oldTaskName = span.dataset.taskName;    
-    
+        const oldTaskName = span.dataset.taskName;        
         updateTasksArray(oldTaskName, newTaskName);
     }
-
 }
 
 const updateTasksArray = function(oldTaskName, newTaskName) {
-    console.log(`old: ${oldTaskName}, new: ${newTaskName}`);
     const indexOfReplacedTask = tasks.indexOf(oldTaskName);
-    console.log(indexOfReplacedTask);
     tasks.splice(indexOfReplacedTask, 1, newTaskName);
     renderTasksList(false);
 }
 
-
-taskForm.addEventListener('submit', addTask);
-
 const renderTasksList = function() {
     tasksList.innerHTML = '';
+
     for(task of tasks) {       
         const newTaskElement = document.createElement('li');
 
         const taskName = document.createElement('span');
+        newTaskElement.appendChild(taskName)
         taskName.dataset.taskName = task;
         taskName.innerHTML = task;       
-        newTaskElement.appendChild(taskName)
 
         const editButton = document.createElement('button');
+        newTaskElement.appendChild(editButton);
         editButton.classList.add('edit-button');
         editButton.innerText = "Edytuj";
         editButton.addEventListener('click', editTask);
-        newTaskElement.appendChild(editButton);
         
         const deleteButton = document.createElement('button');
+        newTaskElement.appendChild(deleteButton);
         deleteButton.classList.add('delete-button');
         deleteButton.innerText = "Usuń";        
         deleteButton.addEventListener('click', deleteTask);
-        newTaskElement.appendChild(deleteButton);
 
         tasksList.appendChild(newTaskElement);        
     }
@@ -89,15 +85,15 @@ const renderEditTaskView = function(listItemToChange) {
     const span = listItemToChange.querySelector('span');
     const editButton = listItemToChange.querySelector('.edit-button');
     const deleteButton = listItemToChange.querySelector('.delete-button');
+    const oldTaskName = span.dataset.taskName;
 
-    const oldTaskName = span.innerHTML;
     span.innerHTML = '';
     editButton.remove();    
 
     const editingForm = document.createElement('form');
+    listItemToChange.insertBefore(editingForm, deleteButton);
     editingForm.setAttribute("name", "editing-task");
     editingForm.setAttribute("novalidate", "");
-    listItemToChange.insertBefore(editingForm, deleteButton);
 
     const editingInput = document.createElement('input');
     editingForm.appendChild(editingInput);
@@ -107,8 +103,8 @@ const renderEditTaskView = function(listItemToChange) {
     editingInput.focus();
 
     const confirmChangesButton = document.createElement('input');
+    editingForm.appendChild(confirmChangesButton);
     confirmChangesButton.setAttribute('type', 'submit');
     confirmChangesButton.setAttribute('value', 'Zatwierdź zmiany')
     confirmChangesButton.addEventListener('click', saveEditedTask);
-    editingForm.appendChild(confirmChangesButton);
 }
