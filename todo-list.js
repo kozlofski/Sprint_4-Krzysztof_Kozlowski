@@ -10,6 +10,7 @@ const addTask = function(event) {
     tasks.push(newTaskName);
     console.log(tasks)
     renderTasksList();
+    taskForm.reset();
 }
 
 const deleteTask = function(event) {
