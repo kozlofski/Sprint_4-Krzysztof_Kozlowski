@@ -8,18 +8,23 @@ const addTask = function(event) {
     event.preventDefault();
     const newTaskName = newTaskInput.value;
     tasks.push(newTaskName);
-    console.log(tasks)
     renderTasksList();
     taskForm.reset();
 }
 
 const deleteTask = function(event) {
+    const taskToBeDeleted = event.currentTarget.parentNode;
+    const span = taskToBeDeleted.querySelector('span');
+    const taskNameToDelete = span.innerText;
+    const indexOfDeletedTask = tasks.indexOf(taskNameToDelete);
+    tasks.splice(indexOfDeletedTask, 1);
+    renderTasksList();
+}
+
+const editTask = function(event) {
     event.preventDefault();
-    const taskToBeDeleted = event.currentTarget.parentNode.firstElementChild.innerText;
-    const indexOfDelTask = tasks.indexOf(taskToBeDeleted);
-    console.log(indexOfDelTask);
-    tasks.splice(indexOfDelTask, 1);
-    renderTasksList(false);
+    const listItemToChange = event.currentTarget.parentNode;
+    renderEditTaskView(listItemToChange);
 }
 
 const saveEditedTask = function(event) {
@@ -42,11 +47,6 @@ const updateTasksArray = function(oldTaskName, newTaskName) {
     renderTasksList(false);
 }
 
-const editTask = function(event) {
-    event.preventDefault();
-    const listItemToChange = event.currentTarget.parentNode;
-    renderEditTaskView(listItemToChange);
-}
 
 taskForm.addEventListener('submit', addTask);
 
