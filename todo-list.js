@@ -22,7 +22,7 @@ const deleteTask = function(event) {
 }
 
 const editTask = function(event) {
-    event.preventDefault();
+    // event.preventDefault();
     const listItemToChange = event.currentTarget.parentNode;
     renderEditTaskView(listItemToChange);
 }
