@@ -1,9 +1,5 @@
 # Nowa wersja to-do-listy
 
-- zadania nie są zapisywane w tablicy, ale bezpośrednio w `<ul>`
-- rozbiłem kod na bardziej 'reużywalne' funkcje, najkrótsze jak potrafiłem
-- kod jest tylko o kilkanaście linijek krótszy, ale chyba bardziej czytelny
-
 ## Zastosowałem się do uwag:
 
 ### Funkcjonalność:
@@ -14,8 +10,10 @@
 ### Kod:
 
 - obecnie pobieram dane bezpośrednio z `<inputów>`
+- zadania nie są zapisywane w tablicy, ale bezpośrednio w `<ul>`
 - użyłem notacji kropkowej do ustawiania atrybutów
 - poza tym przećwiczyłem użycie wyrażeń funkcyjnych z funkcjami strzałkowymi
+- rozbiłem kod na bardziej 'reużywalne' funkcje, najkrótsze jak potrafiłem
 
 ---
 
